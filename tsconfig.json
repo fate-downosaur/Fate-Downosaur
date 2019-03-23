@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "incremental": true,
-    "outDir": "./lib"
+    "outDir": "./lib",
+    "noImplicitAny": true
   },
   "include": ["./src"]
 }
