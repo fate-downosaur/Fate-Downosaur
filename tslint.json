@@ -1,0 +1,30 @@
+{
+  "linterOptions": {
+    "exclude": ["**/*.json"]
+  },
+  "rules": {
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "check-format",
+      "allow-leading-underscore",
+      "allow-trailing-underscore",
+      "allow-pascal-case",
+      "allow-snake-case"
+    ],
+    "import-name": [false],
+    "no-increment-decrement": true,
+    "max-line-length": [true, 200],
+    "function-name": [
+      true,
+      {
+        "private-method-regex": "^_[a-zA-Z0-9]+$",
+        "static-method-regex": "^[a-z][\\w\\d]+$"
+      }
+    ],
+    "interface-name": [true, "always-prefix"]
+  },
+  "jsRules": {
+    "no-empty": true
+  }
+}
