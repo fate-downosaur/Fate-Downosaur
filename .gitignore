@@ -11,6 +11,8 @@
 
 ._*
 .cache
+.rpt2_cache
+.vscode
 .DS_Store
 .idea
 .project
