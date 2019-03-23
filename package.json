@@ -1,0 +1,9 @@
+{
+  "name": "Fate-Downosaur",
+  "version": "0.0.1",
+  "devDependencies": {
+    "autoprefixer": "^9.5.0",
+    "rollup": "^1.7.0",
+    "typescript": "^3.3.4000"
+  }
+}
