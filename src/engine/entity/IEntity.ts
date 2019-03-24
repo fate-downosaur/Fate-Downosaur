@@ -1,0 +1,3 @@
+interface IEntity {}
+
+export { IEntity }
