@@ -8,6 +8,10 @@ interface IWorld {
   inputReactor: IInputReactor
   collisionDetector: ICollisionDetector
   entities: IEntity[]
+  dimension: {
+    width: number
+    height: number
+  }
 }
 
 export { IWorld }

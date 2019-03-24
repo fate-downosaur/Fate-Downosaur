@@ -5,6 +5,7 @@ import { ICollisionDetector, CollisionDetector } from '../collision_detector'
 import { IEntity } from '../entity'
 
 class World implements IWorld {
+  dimension: { width: number; height: number }
   renderer: IRenderer
   inputReactor: IInputReactor
   collisionDetector: ICollisionDetector
