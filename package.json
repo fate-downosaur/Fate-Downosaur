@@ -7,11 +7,13 @@
   ],
   "scripts": {
     "build": "rollup -c",
-    "watch": "rollup -c -w"
+    "watch": "rollup -c -w",
+    "ts-check": "rm -r lib && tsc"
   },
   "devDependencies": {
     "autoprefixer": "^9.5.0",
     "cssnano": "^4.1.10",
+    "husky": "^1.3.1",
     "jest": "^24.5.0",
     "rollup": "^1.7.0",
     "rollup-plugin-livereload": "^1.0.0",
@@ -19,5 +21,10 @@
     "rollup-plugin-serve": "^1.0.1",
     "rollup-plugin-typescript2": "^0.20.1",
     "typescript": "^3.4.0-rc"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run ts-check"
+    }
   }
 }

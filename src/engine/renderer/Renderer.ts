@@ -9,7 +9,7 @@ class Renderer implements IRenderer {
   }
 
   render() {
-    this.world.entities.forEach((entity) => {
+    this.world.getEntities().forEach((entity) => {
       console.log(entity)
     })
   }
