@@ -31,7 +31,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run ts-check"
+      "pre-push": "npm run ts-check && npm run test"
     }
   },
   "dependencies": {
