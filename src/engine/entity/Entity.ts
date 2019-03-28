@@ -1,10 +1,45 @@
-import { IEntity, Position, Attributes, Layer, Color } from './IEntity'
+import { IEntity, Position, Attributes, Layer, Color } from './'
+import { IWorld } from '../world'
+import { RenderObject } from './IEntity'
 
 class Entity implements IEntity {
-  image: Color[][]
-  position: Position
-  attributes: Attributes
-  layer: Layer
+  private image: Color[][]
+  private position: Position
+  private attributes: Attributes
+  private layer: Layer
+  private world: IWorld
+
+  constructor(world: IWorld, arg: RenderObject) {
+    this.world = world
+    this.image = arg.image
+    this.position = arg.position
+    this.attributes = arg.attributes
+    this.layer = arg.layer
+  }
+
+  getPosition() {
+    return this.position
+  }
+
+  setPosition(position: Position) {
+    this.position = position
+    return this
+  }
+
+  getWorld() {
+    return this.world
+  }
+
+  getRenderObjects() {
+    return [
+      {
+        image: this.image,
+        position: this.position,
+        attributes: this.attributes,
+        layer: this.layer
+      }
+    ]
+  }
 }
 
 export { Entity }
