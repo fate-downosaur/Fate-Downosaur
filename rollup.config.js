@@ -26,10 +26,6 @@ export default [
       format: 'umd',
       sourcemap: process.env.NODE_ENV === 'dev'
     },
-    plugins: [
-      typescriptPlugin,
-      serve(),
-      livereload()
-    ]
+    plugins: [typescriptPlugin, serve('public'), livereload()]
   }
 ]

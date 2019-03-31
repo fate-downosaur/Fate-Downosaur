@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Bitmap to Array</title>
+    <meta name="viewport" content="width=device-width" />
+    <style>
+      .row {
+        display: flex;
+      }
+      .column {
+        width: 10px;
+        height: 10px;
+        border: 1px black solid;
+        position: relative;
+      }
+      .tooltip {
+        display: none;
+        position: absolute;
+        bottom: calc(4px + 100%);
+        left: 50%;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        font-size: 14px;
+        white-space: nowrap;
+        padding: 4px 8px;
+      }
+      .column:hover > .tooltip {
+        display: block;
+      }
+    </style>
+  </head>
+
+  <body oncontextmenu="return false;">
+    <form>
+      <label for="width">width: </label>
+      <input id="width" name="width" type="number" />
+      <label for="height">height: </label>
+      <input id="height" name="height" type="number" />
+      <label for="color">color: </label>
+      <input id="color" name="color" />
+      <input type="submit" value="confirm" />
+    </form>
+    <div><button onclick="generateArray()">Generate</button></div>
+    <div id="map"></div>
+    <script>
+      let colorPicker
+      let stroke = 0
+      window.onload = function() {
+        colorPicker = document.getElementById('color')
+        const urlPairs = new URLSearchParams(window.location.search)
+        const width = urlPairs.get('width')
+        const height = urlPairs.get('height')
+        const color = urlPairs.get('color')
+        document.getElementById('width').value = width
+        document.getElementById('height').value = height
+        colorPicker.value = color
+        const map = document.getElementById('map')
+        map.onmousedown = setStroke
+        map.onmouseup = removeStroke
+        for (let i = 0; i < height; i++) {
+          const row = document.createElement('div')
+          row.className = 'row'
+          for (let j = 0; j < width; j++) {
+            const column = document.createElement('div')
+            column.className = 'column'
+            const tooltip = document.createElement('span')
+            tooltip.draggable = false
+            tooltip.className = 'tooltip'
+            tooltip.innerHTML = `(${j}, &nbsp;${i})`
+            column.appendChild(tooltip)
+            column.onmousedown = mouseDown
+            column.onmouseenter = mouseEnter
+            row.appendChild(column)
+          }
+          map.appendChild(row)
+        }
+      }
+
+      function setStroke(e) {
+        if (e.button === 0) {
+          stroke = 1
+        }
+        if (e.button === 2) {
+          stroke = 2
+        }
+      }
+      function removeStroke() {
+        stroke = 0
+      }
+      function mouseDown(e) {
+        if (e.button === 0) {
+          e.target.style.backgroundColor = colorPicker.value
+          return
+        }
+        if (e.button === 2) {
+          e.target.style.backgroundColor = ''
+        }
+      }
+      function mouseEnter(e) {
+        if (stroke === 1) {
+          e.target.style.backgroundColor = colorPicker.value
+          return
+        }
+        if (stroke === 2) {
+          e.target.style.backgroundColor = ''
+        }
+      }
+      function generateArray() {
+        const map = document.getElementById('map')
+        const rows = map.childNodes
+        const arr = []
+        for (let i = 0; i < rows.length; i++) {
+          arr[i] = []
+          const columns = rows[i].childNodes
+          for (let j = 0; j < columns.length; j++) {
+            arr[i].push(columns[j].style.backgroundColor)
+          }
+        }
+        navigator.clipboard.writeText(JSON.stringify(arr)).then(() => {
+          alert('The data has been copied to the clipboard')
+        })
+      }
+    </script>
+  </body>
+</html>
