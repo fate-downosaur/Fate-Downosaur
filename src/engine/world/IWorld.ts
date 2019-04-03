@@ -1,5 +1,5 @@
 import { IRenderer } from '../renderer'
-import { IInputReactor } from '../input_reactor'
+import { IInputDispatcher } from '../input_dispatcher'
 import { ICollisionDetector } from '../collision_detector'
 import { IEntity, IEntityFactory } from '../entity'
 
@@ -11,6 +11,7 @@ interface IWorld {
     width: number
     height: number
   }
+  getInputSource: () => HTMLElement
 }
 
 export { IWorld }
