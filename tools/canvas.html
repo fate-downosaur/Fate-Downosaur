@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>downosaur</title>
+    <meta name="viewport" content="width=device-width" />
+  </head>
+
+  <body>
+    <div>
+      <span>width</span>
+      <input id="width" type="number" value="600" />
+
+      <span>height</span>
+      <input id="height" type="number" value="150" />
+
+      <button id="reset" onclick="reset()">reset</button>
+    </div>
+    <canvas id="canvas" style="border: 1px solid gray"></canvas>
+    <script>
+      let info = []
+      let width = 0
+      let height = 0
+      ctx = null
+      function startTest() {
+        info = []
+        width = Number(document.getElementById('width').value)
+        height = Number(document.getElementById('height').value)
+        console.log(`current dimension is ${width} * ${height}`)
+
+        const canvas = document.getElementById('canvas', { alpha: false })
+        canvas.height = height
+        canvas.width = width
+        canvas.style.height = height
+        canvas.style.width = width
+        ctx = canvas.getContext('2d')
+        for (let i = 0; i !== height; ++i) {
+          info.push(getAColor())
+        }
+        const loop = () => {
+          animation()
+          return requestAnimationFrame(loop)
+        }
+        loop()
+      }
+
+      function animation() {
+        info.pop()
+        info.unshift(getAColor())
+        info.forEach((color, row) => {
+          ctx.fillStyle = color
+          // for (let i = 0; i !== width; ++i) {
+          ctx.fillRect(0, row, width, 1)
+          // }
+        })
+      }
+
+      function getAColor() {
+        return `rgb(${Math.floor(Math.random() * 255)},${Math.floor(
+          Math.random() * 255
+        )},${Math.floor(Math.random() * 255)})`
+      }
+
+      function reset() {
+        startTest()
+      }
+    </script>
+  </body>
+</html>
