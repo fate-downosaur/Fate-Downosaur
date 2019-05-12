@@ -1,9 +1,9 @@
-import { IEntity, Position, Attributes, Layer, Color } from './'
+import { IEntity, Position, Attributes, Layer, RenderShape } from './'
 import { IWorld } from '../world'
 import { RenderObject } from './IEntity'
 
 class Entity implements IEntity {
-  private image: Color[][]
+  private image: RenderShape[]
   private position: Position
   private attributes: Attributes
   private layer: Layer

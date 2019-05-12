@@ -1,6 +1,3 @@
-import { IRenderer } from '../renderer'
-import { IInputDispatcher } from '../input_dispatcher'
-import { ICollisionDetector } from '../collision_detector'
 import { IEntity, IEntityFactory } from '../entity'
 
 interface IWorld {
@@ -12,6 +9,12 @@ interface IWorld {
     height: number
   }
   getInputSource: () => HTMLElement
+  getCanvas: () => HTMLCanvasElement
+  addEntity: (entity: IEntity) => void
+  removeEntity: (entity: IEntity) => void
+  start: () => void
+  pause: () => void
+  stop: () => void
 }
 
 export { IWorld }

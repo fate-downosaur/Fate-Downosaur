@@ -9,11 +9,15 @@ class EntityFactory implements IEntityFactory {
   }
 
   createEntity(arg: RenderObject) {
-    return new Entity(this.world, arg)
+    const e = new Entity(this.world, arg)
+    this.world.addEntity(e)
+    return e
   }
 
   createEntityGroup(position: Position) {
-    return new EntityGroup(this.world, position)
+    const e = new EntityGroup(this.world, position)
+    this.world.addEntity(e)
+    return e
   }
 
   getWorld() {

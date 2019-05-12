@@ -8,7 +8,7 @@
   "scripts": {
     "build": "rollup -c",
     "watch": "rollup -c -w",
-    "ts-check": "rm -r lib && tsc",
+    "ts-check": "rm -r dist && tsc",
     "test": "jest",
     "test-watch": "jest --watch"
   },

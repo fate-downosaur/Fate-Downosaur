@@ -18,11 +18,27 @@ export type Layer = {
 
 export type Color = string
 
+export type Pixel = {
+  type: 'pixel'
+  x: number
+  y: number
+}
+
+export type Rectangle = {
+  type: 'rectangle'
+  x: number
+  y: number
+  width: number
+  height: number
+}
+
+export type RenderShape = Pixel | Rectangle
+
 export type RenderObject = {
   position: Position
   attributes: Attributes
   layer: Layer
-  image: Color[][]
+  image: RenderShape[]
 }
 
 export interface IEntity {

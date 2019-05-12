@@ -1,5 +1,5 @@
-import { InputType } from './types'
+import { Key } from './types'
 
 export interface IInputReactor {
-  react: (type: InputType) => void
+  react: (type: Key) => void
 }
