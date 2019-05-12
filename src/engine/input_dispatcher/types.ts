@@ -1,1 +1,1 @@
-export type InputType = 'space'
+export type Key = 'space'

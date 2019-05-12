@@ -1,44 +1,54 @@
 import { IInputDispatcher } from './IInputDispatcher'
 import { IWorld } from '../world'
-import { InputType } from './types'
+import { Key } from './types'
 import { IEntity } from '../entity'
+import { ListenerAction, Listener } from './'
 
-type Listener = {
+type DispatcherListener = Listener & {
   id: number
-  entity: IEntity
-  type: InputType
 }
 
 class InputDispatcher implements IInputDispatcher {
   private world: IWorld
-  private listeners: Listener[]
-  private static instance: IInputDispatcher
+  private listeners: DispatcherListener[]
+  private static instance: IInputDispatcher | undefined
   static listenerId = 0
 
-  static getInstance(world: IWorld) {
-    if (InputDispatcher.instance) {
-      return InputDispatcher.instance
-    }
-    return new InputDispatcher(world)
+  static getInstance() {
+    return InputDispatcher.instance
+  }
+
+  static initialize(world: IWorld) {
+    InputDispatcher.instance = new InputDispatcher(world)
+    return InputDispatcher.instance
   }
 
   private constructor(world: IWorld) {
     this.world = world
     this.listeners = []
-    this.hookUpEventListener()
+    this.hookUpEventListener(world.getInputSource())
   }
 
-  hookUpEventListener() {}
+  private hookUpEventListener(container: HTMLElement) {
+    container.addEventListener('keypress', this.listener)
+  }
 
-  addListener(type: InputType, entity: IEntity) {
+  private listener(event: KeyboardEvent) {
+    this.listeners.forEach((listener) => {
+      if (listener.key.toLowerCase() === event.code) {
+        this.dispatch(event, listener)
+      }
+    })
+  }
+
+  private dispatch(event: KeyboardEvent, listener: Listener) {
+    listener.action({ event })
+  }
+
+  addListener(listener: { key: Key; entity: IEntity; action: ListenerAction }) {
     InputDispatcher.listenerId += 1
-
-    const listener = {
-      entity,
-      type,
-      id: InputDispatcher.listenerId
-    }
-    this.listeners.push(listener)
+    ;(<DispatcherListener>listener).id = InputDispatcher.listenerId
+    this.listeners.push(listener as DispatcherListener)
     return InputDispatcher.listenerId
   }
 
