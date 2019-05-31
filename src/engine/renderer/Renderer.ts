@@ -1,6 +1,6 @@
 import { IRenderer } from './IRenderer'
 import { IWorld, World } from '../world'
-import { RenderShape, Rectangle } from '../entity'
+import { RenderShape, Rectangle, RenderObject } from '../entity'
 
 class Renderer implements IRenderer {
   world: IWorld
@@ -20,29 +20,16 @@ class Renderer implements IRenderer {
     this.ctx.clearRect(0, 0, width, height)
     this.world.getEntities().forEach((entity) => {
       entity.getRenderObjects().forEach((renderObject) => {
-        this.drawImage(renderObject.image)
+        this.drawImage(renderObject)
       })
     })
   }
 
-  private drawImage(image: RenderShape[]) {
-    image.forEach((shape) => this.drawShape(shape))
-  }
-
-  private drawShape(shape: RenderShape) {
-    switch (shape.type) {
-      case 'pixel': {
-        this.ctx.fillRect(shape.x, shape.y, 1, 1)
-      }
-      case 'rectangle': {
-        this.ctx.fillRect(
-          shape.x,
-          shape.y,
-          (<Rectangle>shape).width,
-          (<Rectangle>shape).height
-        )
-      }
-    }
+  private drawImage({ image, position }: RenderObject) {
+    image.forEach((shape) => {
+      this.ctx.fillStyle = 'black'
+      shape.drawSelf(this.ctx, position)
+    })
   }
 }
 

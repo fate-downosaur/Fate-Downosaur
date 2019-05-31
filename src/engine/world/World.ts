@@ -1,6 +1,10 @@
 import { IWorld } from './IWorld'
 import { Renderer, IRenderer } from '../renderer'
-import { InputDispatcher, IInputDispatcher } from '../input_dispatcher'
+import {
+  InputDispatcher,
+  IInputDispatcher,
+  Listener
+} from '../input_dispatcher'
 import { ICollisionDetector, CollisionDetector } from '../collision_detector'
 import { IEntity, IEntityFactory, EntityFactory } from '../entity'
 
@@ -46,6 +50,14 @@ class World implements IWorld {
 
   removeEntity(entity: IEntity) {
     this.entities = this.entities.filter((i) => i !== entity)
+  }
+
+  addEventListener(listen: Listener) {
+    return this.inputDispatcher.addListener(listen)
+  }
+
+  removeEventListener(id:number){
+    return this.inputDispatcher.removeListener(id)
   }
 
   start() {

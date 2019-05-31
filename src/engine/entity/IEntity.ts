@@ -1,4 +1,5 @@
 import { IWorld } from '../world'
+import { Key, ListenerAction } from '../input_dispatcher'
 
 export type Position = {
   x: number
@@ -6,7 +7,7 @@ export type Position = {
 }
 
 export type Attributes = {
-  color: string | Function
+  color: string
 }
 
 export type LayerType = 'background' | 'foreground' | 'ui'
@@ -18,25 +19,12 @@ export type Layer = {
 
 export type Color = string
 
-export type Pixel = {
-  type: 'pixel'
-  x: number
-  y: number
+export interface RenderShape {
+  drawSelf: (ctx: CanvasRenderingContext2D, position: Position) => void
 }
-
-export type Rectangle = {
-  type: 'rectangle'
-  x: number
-  y: number
-  width: number
-  height: number
-}
-
-export type RenderShape = Pixel | Rectangle
 
 export type RenderObject = {
   position: Position
-  attributes: Attributes
   layer: Layer
   image: RenderShape[]
 }
@@ -46,4 +34,6 @@ export interface IEntity {
   getPosition: () => Position
   setPosition: (position: Position) => IEntity
   getWorld: () => IWorld
+  addEventListener: (arg: { key: Key; action: ListenerAction }) => void
+  removeEventListener: () => void
 }

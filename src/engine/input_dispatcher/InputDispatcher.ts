@@ -26,11 +26,13 @@ class InputDispatcher implements IInputDispatcher {
   private constructor(world: IWorld) {
     this.world = world
     this.listeners = []
+    this.listener = this.listener.bind(this)
     this.hookUpEventListener(world.getInputSource())
   }
 
   private hookUpEventListener(container: HTMLElement) {
-    container.addEventListener('keypress', this.listener)
+    // todo fix this
+    window.addEventListener('keypress', this.listener)
   }
 
   private listener(event: KeyboardEvent) {

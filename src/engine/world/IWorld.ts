@@ -1,4 +1,5 @@
 import { IEntity, IEntityFactory } from '../entity'
+import { Listener } from '../input_dispatcher'
 
 interface IWorld {
   getEntities: () => IEntity[]
@@ -15,6 +16,8 @@ interface IWorld {
   start: () => void
   pause: () => void
   stop: () => void
+  addEventListener: (listen: Listener) => number
+  removeEventListener: (id: number) => void
 }
 
 export { IWorld }

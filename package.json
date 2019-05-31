@@ -3,12 +3,12 @@
   "version": "0.0.1",
   "browser": "dist/ds.js",
   "files": [
-    "disct"
+    "dist"
   ],
   "scripts": {
     "build": "rollup -c",
-    "watch": "rollup -c -w",
-    "ts-check": "rm -r dist && tsc",
+    "start": "rollup -c -w",
+    "ts-check": "tsc",
     "test": "jest",
     "test-watch": "jest --watch"
   },

@@ -1,11 +1,10 @@
-import { IEntity, Position, Attributes, Layer, RenderShape } from './'
+import { IEntity, Position, Layer, RenderShape } from './'
 import { IWorld } from '../world'
 import { RenderObject } from './IEntity'
 
 class Entity implements IEntity {
   private image: RenderShape[]
   private position: Position
-  private attributes: Attributes
   private layer: Layer
   private world: IWorld
 
@@ -13,7 +12,6 @@ class Entity implements IEntity {
     this.world = world
     this.image = arg.image
     this.position = arg.position
-    this.attributes = arg.attributes
     this.layer = arg.layer
   }
 
@@ -35,10 +33,9 @@ class Entity implements IEntity {
       {
         image: this.image,
         position: this.position,
-        attributes: this.attributes,
         layer: this.layer
       }
-    ]
+    ] as RenderObject[]
   }
 }
 
