@@ -1,14 +1,14 @@
-import { IEntityGroup, IEntity, Position, Attributes, Layer, Color } from './'
+import { IEntityGroup, IEntity } from './'
 import { flatten } from 'lodash'
 import { IWorld } from '../world'
 
 class EntityGroup implements IEntityGroup {
   private entities: IEntity[]
-  private originalPosition: Position
-  private position: Position
+  private originalPosition: EntityPosition
+  private position: EntityPosition
   private world: IWorld
 
-  constructor(world: IWorld, position: Position) {
+  constructor(world: IWorld, position: EntityPosition) {
     this.entities = []
     this.world = world
     this.position = position
@@ -19,7 +19,7 @@ class EntityGroup implements IEntityGroup {
     return this.position
   }
 
-  setPosition(position: Position) {
+  setPosition(position: EntityPosition) {
     this.position = position
     return this
   }
@@ -52,6 +52,14 @@ class EntityGroup implements IEntityGroup {
     })
 
     return flatten(res)
+  }
+
+  addEventListener(option: EventListenerOption) {
+    return this.world.addEventListener(option)
+  }
+
+  removeEventListener(id: number) {
+    return this.world.removeEventListener(id)
   }
 }
 

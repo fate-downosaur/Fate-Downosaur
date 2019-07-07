@@ -4,5 +4,6 @@
     "outDir": "./lib",
     "noImplicitAny": true
   },
-  "include": ["./src"]
+  "include": ["./src"],
+  "files": ["./src/engine/types.d.ts"]
 }

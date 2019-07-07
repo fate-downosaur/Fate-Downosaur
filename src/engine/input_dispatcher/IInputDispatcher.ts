@@ -1,4 +1,3 @@
-import { Key } from './'
 import { IEntity } from '../entity'
 
 export type ListenerAction = ({ event }: { event: KeyboardEvent }) => void

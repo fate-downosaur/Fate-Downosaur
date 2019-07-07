@@ -1,5 +1,5 @@
 import { IWorld } from '../world'
-import { IEntityFactory, Entity, EntityGroup, Position } from '.'
+import { IEntityFactory, Entity, EntityGroup } from '.'
 import { RenderObject } from './IEntity'
 
 class EntityFactory implements IEntityFactory {
@@ -14,7 +14,7 @@ class EntityFactory implements IEntityFactory {
     return e
   }
 
-  createEntityGroup(position: Position) {
+  createEntityGroup(position: EntityPosition) {
     const e = new EntityGroup(this.world, position)
     this.world.addEntity(e)
     return e

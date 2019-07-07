@@ -1,4 +1,4 @@
-import { EntityFactory, Position } from '../'
+import { EntityFactory } from '../'
 import { IWorld } from '../../world'
 import { RenderObject } from '../IEntity'
 

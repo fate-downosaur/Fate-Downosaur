@@ -16,7 +16,7 @@ interface IWorld {
   start: () => void
   pause: () => void
   stop: () => void
-  addEventListener: (listen: Listener) => number
+  addEventListener: (option: EventListenerOption) => number
   removeEventListener: (id: number) => void
 }
 

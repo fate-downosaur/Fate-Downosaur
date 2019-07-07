@@ -1,6 +1,5 @@
 import { IInputDispatcher } from './IInputDispatcher'
 import { IWorld } from '../world'
-import { Key } from './types'
 import { IEntity } from '../entity'
 import { ListenerAction, Listener } from './'
 

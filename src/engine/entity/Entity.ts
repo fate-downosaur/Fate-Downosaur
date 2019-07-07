@@ -1,10 +1,10 @@
-import { IEntity, Position, Layer, RenderShape } from './'
+import { IEntity, RenderShape } from './'
 import { IWorld } from '../world'
 import { RenderObject } from './IEntity'
 
 class Entity implements IEntity {
   private image: RenderShape[]
-  private position: Position
+  private position: EntityPosition
   private layer: Layer
   private world: IWorld
 
@@ -19,7 +19,7 @@ class Entity implements IEntity {
     return this.position
   }
 
-  setPosition(position: Position) {
+  setPosition(position: EntityPosition) {
     this.position = position
     return this
   }
@@ -36,6 +36,14 @@ class Entity implements IEntity {
         layer: this.layer
       }
     ] as RenderObject[]
+  }
+
+  addEventListener(option: EventListenerOption) {
+    return this.world.addEventListener(option)
+  }
+
+  removeEventListener(id: number) {
+    return this.world.removeEventListener(id)
   }
 }
 

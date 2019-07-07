@@ -1,4 +1,4 @@
-import { RenderShape, Position } from '../'
+import { RenderShape } from '../'
 import { Attributes } from '../IEntity'
 import { setupCtx } from './utils'
 
@@ -11,7 +11,7 @@ export type Props = {
 }
 
 export class Rectangle implements RenderShape {
-  position: Position
+  position: EntityPosition
   attributes: Attributes
   width: number
   height: number
@@ -23,7 +23,7 @@ export class Rectangle implements RenderShape {
     this.height = args.height
   }
 
-  drawSelf(ctx: CanvasRenderingContext2D, position: Position) {
+  drawSelf(ctx: CanvasRenderingContext2D, position: EntityPosition) {
     if (this.attributes) {
       setupCtx(this.attributes, ctx)
     }
