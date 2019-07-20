@@ -30,13 +30,13 @@ class InputDispatcher implements IInputDispatcher {
   }
 
   private hookUpEventListener(container: HTMLElement) {
-    // todo fix this
+    // MTODO: fix this
     window.addEventListener('keypress', this.listener)
   }
 
   private listener(event: KeyboardEvent) {
     this.listeners.forEach((listener) => {
-      if (listener.key.toLowerCase() === event.code) {
+      if (listener.key.toLowerCase() === event.code.toLowerCase()) {
         this.dispatch(event, listener)
       }
     })

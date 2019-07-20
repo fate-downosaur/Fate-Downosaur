@@ -1,13 +1,15 @@
 import serve from 'rollup-plugin-serve'
 import livereload from 'rollup-plugin-livereload'
 import rollupTypescript from 'rollup-plugin-typescript2'
+import resolve from 'rollup-plugin-node-resolve'
 
 import pkg from './package.json'
 
 const input = 'src/index.ts'
 
 const typescriptPlugin = rollupTypescript({
-  typescript: require('typescript')
+  typescript: require('typescript'),
+  sourcemap: true
 })
 
 export default [
@@ -16,9 +18,9 @@ export default [
     output: {
       file: pkg.browser,
       name: 'DS',
-      format: 'umd',
-      sourcemap: process.env.NODE_ENV === 'dev'
+      format: 'es',
+      sourcemap: 'inline'
     },
-    plugins: [typescriptPlugin, serve(), livereload()]
+    plugins: [resolve(), typescriptPlugin, serve(), livereload()]
   }
 ]

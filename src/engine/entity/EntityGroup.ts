@@ -1,5 +1,5 @@
 import { IEntityGroup, IEntity } from './'
-import { flatten } from 'lodash'
+import { flatten } from 'lodash-es'
 import { IWorld } from '../world'
 
 class EntityGroup implements IEntityGroup {

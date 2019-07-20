@@ -21,5 +21,13 @@ export function start(canvas: HTMLCanvasElement) {
       })
     ]
   })
+  e.addEventListener({
+    key: 'space',
+    action: ({ event }) => {
+      console.log(event)
+      const position = e.getPosition()
+      e.setPosition({ x: position.x + 10, y: position.y })
+    }
+  })
   world.start()
 }

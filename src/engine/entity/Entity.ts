@@ -38,6 +38,10 @@ class Entity implements IEntity {
     ] as RenderObject[]
   }
 
+  /**
+   * it's a helper function to add listen on input dispatcher
+   * @param option specify kind of event to listen to and action
+   */
   addEventListener(option: EventListenerOption) {
     return this.world.addEventListener(option)
   }
